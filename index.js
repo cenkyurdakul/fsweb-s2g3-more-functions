@@ -16,10 +16,12 @@
   örnek output: ""
 */
 
-function dosyaAdiniBul(/* kodlar buraya */) {
-  // kodlar buraya
+function dosyaAdiniBul(path) {
+  const dosyaAdi = path.replace(/^.*[\\\/]/, '')
+  
+  return dosyaAdi
 }
-
+console.log(dosyaAdiniBul("C:/Users/johnsmith/Music/Beethoven_5.mp3"))
 /*
   GÖREV 2
   - Input:  Bir sayı arrayini parametre olarak alacak bir fonksiyon oluştur.
@@ -38,10 +40,14 @@ function dosyaAdiniBul(/* kodlar buraya */) {
   örnek output: 104
 */
 
-function ortalamaBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamaBul(array) {
+  if (Object.keys(array).length == 0){
+    return null
+  }
+const ortalama = array.reduce((toplam , sayi)=> toplam + sayi , 0)/ Object.keys(array).length
+return ortalama 
 }
-
+console.log(ortalamaBul([109, 216, 288, 143, 71, 185, -278, 194, 5]))
 /*
   GÖREV 3
   - Input:  Bir sayı arrayini ve ortalama bulmaya yarayacak bir fonksiyonu parametre olarak alacak bir fonksiyon oluştur.
@@ -61,10 +67,22 @@ function ortalamaBul(/* kodlar buraya */) {
   örnek input:  [109, 216, 288, 143, 71, 185, -278, 194, 5]
   örnek output: [109, 216, 288, 143, 185, 194]
 */
+// Array i al, ürünleri gez, callbakten büyükse, yeni diziye at
 
-function ortalamadanBuyukleriBul(/* kodlar buraya */) {
-  // kodlar buraya
+
+function ortalamadanBuyukleriBul(array1 , callback) {
+  if (Object.keys(array1).length == 0){
+    return null
+  }
+  let yeniArray = [];
+  for ( let i = 0; i < array1.length; i++){
+    if(array1[i] >= callback(array1) ){
+      yeniArray.push(array1[i])
+    }
+  }
+  return yeniArray;
 }
+console.log(ortalamadanBuyukleriBul([109, 216, 288, 143, 71, 185, -278, 194, 5] , ortalamaBul))
 
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
